@@ -18,14 +18,4 @@ namespace ABot
 		void CreatePipe(std::string_view PipeName);
 		void LoadPipe(std::string_view PipeName);
 	};
-	/*
-	namespace Pipe
-	{
-		using JSON = nlohmann::json;
-
-		void Update(const JSON Data);
-		void RunPipe();
-
-	}
-	*/
 }
