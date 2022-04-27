@@ -5,7 +5,7 @@ namespace ABot
 	void Engine::playSound(std::string path)
 	{
 		System->createSound(path.c_str(), FMOD_DEFAULT, nullptr, &Sound);
-		System->playSound(Sound, Group, true, &Channel);
+		System->playSound(Sound, nullptr, true, &Channel);
 		System->update();
 	}
 	float Engine::GetAudioSpeed()
