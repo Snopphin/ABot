@@ -8,7 +8,6 @@ namespace ABot
 		FMOD::Sound* Sound;
 	public:
 		static inline FMOD::System* System;
-		static inline FMOD::ChannelGroup* Group;
 		static inline FMOD::Channel* Channel;
 		static inline FMOD::DSP* Dsp;
 	private:
