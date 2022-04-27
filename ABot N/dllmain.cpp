@@ -14,8 +14,6 @@ DWORD WINAPI RunBot(void* hMod)
     FMODEngine::System->setSoftwareFormat(48 * 1000, FMOD_SPEAKERMODE_STEREO, 0);
     FMODEngine::System->createDSPByType(FMOD_DSP_TYPE_FADER, &FMODEngine::Dsp);
 
-    FMODEngine::Group->addDSP(0, GDEngine->m_pDSP);
-
     guiPipe.CreatePipe("\\\\.\\pipe\\ABot");
 
     MH_Initialize();
