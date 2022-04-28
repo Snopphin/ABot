@@ -1,5 +1,5 @@
 #include "pch.h"
-#include <fstream>
+
 namespace ABot
 {
 	namespace PlayLayer
@@ -12,8 +12,8 @@ namespace ABot
 				GDEngine->m_bMetering = true;
 
 				const float GDMusicVolume = Engine::GetMusicVolume(self);
-				Engine::Dsp->setParameterFloat(FMOD_DSP_FADER::FMOD_DSP_FADER_GAIN, GDMusicVolume);
-
+				Engine::Channel->setVolume(GDMusicVolume + GDEngine->m_fBackgroundMusicVolume + guiPipe.Volume);
+				Engine::Dsp->setParameterFloat(FMOD_DSP_FADER::FMOD_DSP_FADER_GAIN, GDMusicVolume + GDEngine->m_fBackgroundMusicVolume);
 			}
 			return PlayLayer::Update(self, delta);
 		}
