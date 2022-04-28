@@ -19,8 +19,7 @@ namespace ABot
 	{
 		void* Player = *(void**)((char*)self + 0x224);
 		void* PlayerWave = *(void**)((char*)Player + 0x514);
-		float WavePulse = *(float*)((size_t)PlayerWave + 0x012C); 
-
+		float WavePulse = *(float*)((uint32_t)PlayerWave + 0x012C); 
 		static auto GDEngine = gd::FMODAudioEngine::sharedEngine();
 		float GDMusicVolume = WavePulse + GDEngine->m_fPulse1 + GDEngine->m_fPulse2 + GDEngine->m_fPulse3;
 		return GDMusicVolume;
@@ -39,8 +38,6 @@ namespace ABot
 		const float GDAudioSpeed = GetAudioSpeed();
 		Channel->setPitch(CurrentPitch / GDAudioSpeed);
 
-		static auto GDEngine = gd::FMODAudioEngine::sharedEngine();
-		Channel->setVolume(guiPipe.Volume + GDEngine->m_fBackgroundMusicVolume);
 		Channel->setPaused(false);
 	}
 }
