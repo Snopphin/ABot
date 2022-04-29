@@ -2,7 +2,6 @@
 #include <extensions2.h>
 #include <json.hpp>
 #include <fstream>
-#include <future>
 #include <AutoUpdate.h>
 
 using JSON = nlohmann::json;
@@ -18,8 +17,6 @@ aBot data;
 
 void UpdatePipe()
 {
-	static std::mutex mutex;
-	std::unique_lock lock(mutex);
 	JSON PipeData;
 
 	PipeData["ABot"] = data.IsABot;
@@ -68,7 +65,7 @@ DWORD WINAPI _dll_main(LPVOID lpParam)
 
 	using namespace MegaHackExt;
 
-	Window* window = Window::Create("ABot 1.7");
+	Window* window = Window::Create("ABot 1.8");
 
 	CheckBox* ABot = CheckBox::Create("ABot");
 	ABot->setCallback([](CheckBox* a, bool b) 
@@ -116,18 +113,16 @@ DWORD WINAPI _dll_main(LPVOID lpParam)
 	});
 	ClickPacks->setValues(ClickPack);
 
-	std::string_view AutoUpdateText[2] = { "", "" };
 	if (AutoUpdate.GetUpdate())
 	{
-		AutoUpdateText[0] = "ABot Version Is Outdated";
-		AutoUpdateText[1] = "Update Your ABot Version";
+		std::string_view AutoUpdateText[2] = { "ABot Version Is Outdated", "Update Your ABot Version" };
+
+		Label* AutoUpdate = Label::Create(AutoUpdateText[0].data());
+		Label* AutoUpdate2 = Label::Create(AutoUpdateText[1].data());
+
+		window->add(AutoUpdate);
+		window->add(AutoUpdate2);
 	}
-
-	Label* AutoUpdate = Label::Create(AutoUpdateText[0].data());
-	Label* AutoUpdate2 = Label::Create(AutoUpdateText[1].data());
-
-	window->add(AutoUpdate);
-	window->add(AutoUpdate2);
 	window->add(ClickPacks);
 	window->add(Volume);
 	window->add(HardClick);
