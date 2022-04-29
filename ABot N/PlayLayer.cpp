@@ -8,12 +8,8 @@ namespace ABot
 		{
 			if (guiPipe.IsABot)
 			{
-				static auto GDEngine = gd::FMODAudioEngine::sharedEngine();
-				GDEngine->m_bMetering = true;
-
 				const float GDMusicVolume = Engine::GetMusicVolume(self);
-				Engine::Channel->setVolume(GDMusicVolume + GDEngine->m_fBackgroundMusicVolume + guiPipe.Volume);
-				Engine::Dsp->setParameterFloat(FMOD_DSP_FADER::FMOD_DSP_FADER_GAIN, GDMusicVolume + GDEngine->m_fBackgroundMusicVolume);
+				Engine::Dsp->setParameterFloat(FMOD_DSP_FADER::FMOD_DSP_FADER_GAIN, GDMusicVolume);
 			}
 			return PlayLayer::Update(self, delta);
 		}
