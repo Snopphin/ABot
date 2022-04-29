@@ -26,7 +26,7 @@ namespace ABot
 	}
 	void Engine::Update()
 	{
-		const float TargetPitch = pow(2, 0.01f);
+		const float TargetPitch = pow(2, 0.01147f);
 
 		std::uniform_real_distribution<float> Pitch(TargetPitch * 1.0004f, TargetPitch);
 		std::random_device Seed;
@@ -36,7 +36,8 @@ namespace ABot
 
 		const float CurrentPitch = Pitch(RandomEngine);
 		const float GDAudioSpeed = GetAudioSpeed();
-		Channel->setPitch(CurrentPitch / GDAudioSpeed);
+		Channel->setPitch(TargetPitch / GDAudioSpeed);
+		Channel->setVolume(guiPipe.Volume);
 
 		Channel->setPaused(false);
 	}
