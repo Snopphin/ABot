@@ -4,7 +4,7 @@
 class Update
 {
 private:
-	const std::string m_Version = "1.7";
+	const std::string m_Version = "1.8";
 	bool m_IsFoundUpdate = false;
 public:
 	void LoadVersion();
