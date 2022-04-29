@@ -2,7 +2,6 @@
 #include <fstream>
 #include <gdhm.h>
 #include <json.hpp>
-#include <future>
 #include "../AutoUpdate.h"
 
 using JSON = nlohmann::json;
@@ -66,7 +65,7 @@ void _header()
 	gdhm::gui::checkbox(gdhm_new_id(), "ABot", &data.IsABot, nullptr, UpdatePipe);
 	gdhm::gui::checkbox(gdhm_new_id(), "SoftClick", &data.IsSoftClick, nullptr, UpdatePipe);
 	gdhm::gui::checkbox(gdhm_new_id(), "HardClick", &data.IsHardClick, nullptr, UpdatePipe);
-	gdhm::gui::input_float(gdhm_new_id(), &data.Volume, "%.1f", 1, 0, 10.f, UpdatePipe);
+	gdhm::gui::input_float(gdhm_new_id(), &data.Volume, "%.3f", 1, 0, 10.f, UpdatePipe);
 
 	gdhm::gui::list_box(gdhm_new_id(), &data.SelectedClickPack, data.ClickPackFolders, [&]()
 	{
@@ -92,7 +91,7 @@ DWORD WINAPI _dll_main(LPVOID lpParam)
 	if (gdhm::is_loaded())
 	{
 		// Example of normal window
-		gdhm::gui::window("ABot 1.6", "", nullptr, _main_callback, _header);
+		gdhm::gui::window("ABot 1.8", "", nullptr, _main_callback, _header);
 	}
 
 	return TRUE;
